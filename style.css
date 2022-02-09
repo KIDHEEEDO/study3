@@ -1,0 +1,56 @@
+*{
+    margin : 0;
+    padding : 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: pink;
+}
+
+.container {
+    color : white;
+    position : absolute;
+    top : 50%;
+    left : 50%;
+    transform : translate(-50%, -50%);
+    text-align: center;
+}
+
+.material-icons {
+    font-size : 10rem;
+    text-shadow : 2px 2px 2px gray;
+}
+
+.typing {
+    font-size : 2rem;
+    font-weight : bold;
+    margin-bottom : 5px;
+    /* text-shadow : 2px 2px 2px black; */
+}
+
+.info {
+    font-size : 1.5rem;
+    color : gray;
+}
+
+#typing {
+    position : relative;
+    display : inline-block;
+}
+
+#typing::after {
+    content : '';
+    display : block;
+    position : absolute;
+    top : 0;
+    right : -10px;
+    width : 4px;
+    height : 100%;
+    background-color : white;
+    /* box-shadow : 1.5px 1px 2px black; */
+}
+
+#typing.cursor::after {
+    display : none;
+}
