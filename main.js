@@ -1,5 +1,4 @@
 let text = document.querySelector('#typing')
-let selectTyping = '';
 
 function cursor () {
     if(text.classList[1] == 'cursor') {
@@ -11,26 +10,31 @@ function cursor () {
 
 setInterval(cursor, 500);
 
-function randomList () {
-    let myList = ['KOREAN', 'ENGLISH', 'JAPANESE', 'CHINESE', 'FRENCH', 'SPANISH', 'GERMAN', 'VIETNAMESE', 'RUSSIAN', 'ITALIAN', 'THAI', 'INDONESIAN', 'ARABIC', 'MONGOLIAN', 'HINDI', 'GREEK', 'PORTUGUESE']
-    let myListSelect = myList[Math.floor(Math.random() * myList.length)]
-    let splitedList = myListSelect.split('');
+function random_string () {
+    let world_language = ['KOREAN', 'ENGLISH', 'JAPANESE', 'CHINESE', 'FRENCH', 'SPANISH', 'GERMAN', 'VIETNAMESE', 'RUSSIAN', 'ITALIAN', 'THAI', 'INDONESIAN', 'ARABIC', 'MONGOLIAN', 'HINDI', 'GREEK', 'PORTUGUESE']
+    let select_string = world_language[Math.floor(Math.random() * world_language.length)]
+    let select_string_arr = select_string.split('')
 
-    return splitedList;
+    return select_string_arr
 }
 
-function listTyping (texts) {
-    for(let i = 0; i < texts.length; i++) {
-        setTimeout(() => {
-            selectTyping += texts[0]
-            texts.shift()
-            text.innerText = selectTyping;
-        }, 80 * i)
+function reset_typing () {
+    text.textContent = ''
+    dynamic(random_string())
+}
+
+function dynamic(random_arr) {
+    if(random_arr.length > 0) {
+        text.textContent += random_arr.shift()
+        setTimeout(function () {
+            dynamic(random_arr)
+        }, 90)
+    } else {
+        setTimeout(reset_typing, 3000)
     }
-    selectTyping = '';
 }
 
-setInterval(() => {
-    text.innerText = '';
-    listTyping(randomList())
+setTimeout(() => {
+    text.textContent = ''
+    dynamic(random_string())
 }, 3000)
